@@ -6,11 +6,12 @@ library(janitor)
 library(data.table)
 library(lubridate)
 
-emp_name = "Jie Niu"
-emp_id = "20072214"
-dept = "Academic Assistant"
-program = "MBAS"
-comment = "MBAS 824 F23 TA"
+emp_name = "..."
+initial="..."
+emp_id = "..."
+dept = "..."
+program = "..."
+comment = "..."
 
 setwd("~/data/smith_timesheet")
 timesheet = read.csv("timesheet_temp.csv")
@@ -63,43 +64,43 @@ each_period = function(period_dt,period_text,cmt, pg, excel=FALSE) {
       if (i[6] == "1") {
         enum_cp[1] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                              startRow = 5, startCol = 2, colNames = FALSE)
       }
       if (i[6] == "2" ){
         enum_cp[2] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                                   startRow = 6, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "3") {
         enum_cp[3] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                                   startRow = 7, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "4") {
         enum_cp[4] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                                   startRow = 8, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "5") {
         enum_cp[5] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                                   startRow = 9, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "6") {
         enum_cp[6] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                                   startRow = 10, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "7") {
         enum_cp[7] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                                   startRow = 11, startCol = 2, colNames = FALSE)
       } 
     }
@@ -107,43 +108,43 @@ each_period = function(period_dt,period_text,cmt, pg, excel=FALSE) {
       if (i[6] == "1") {
         enum_cp[8] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                              startRow = 13, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "2" ){
         enum_cp[9] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                              startRow = 14, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "3") {
         enum_cp[10] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                              startRow = 15, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "4") {
         enum_cp[11] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                              startRow = 16, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "5") {
         enum_cp[12] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                              startRow = 17, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "6") {
         enum_cp[13] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                              startRow = 18, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "7") {
         enum_cp[14] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
         if (excel) writeData(wb, sheet=1, 
-                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg, initial), nrow=1), 
                              startRow = 19, startCol = 2, colNames = FALSE)
       } 
     }
