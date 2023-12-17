@@ -1,13 +1,18 @@
+# install.packages("devtools")
+# devtools::install_github("pridiltal/staplr")
 library(staplr)
+library(openxlsx)
 library(janitor)
 library(data.table)
 library(lubridate)
 
-dept = "RA"
-program = "RA"
-comment = "Research"
+emp_name = "Jie Niu"
+emp_id = "20072214"
+dept = "Academic Assistant"
+program = "MBAS"
+comment = "MBAS 824 F23 TA"
 
-setwd("/home/rstudio/data")
+setwd("~/data/smith_timesheet")
 timesheet = read.csv("timesheet_temp.csv")
 setDT(timesheet)
 remove_empty(timesheet,  which = "rows")
@@ -39,57 +44,111 @@ enum = data.table(
 
 enum=transpose(enum)
 
-each_period = function(period_dt,period_text,cmt, pg) {
+# p = "2023-25" 
+# period_dt= timesheet[period==p]
+
+each_period = function(period_dt,period_text,cmt, pg, excel=FALSE) {
+  
+  if (excel) {
+    excel_temp = "timesheet_fillable.xlsx"
+    wb = loadWorkbook(excel_temp)
+    }
   
   enum_cp = enum
+
   for (i in transpose(period_dt)) {
+    # i = transpose(period_dt)[,V1]
+    
     if (i[7] == "1") {
       if (i[6] == "1") {
         enum_cp[1] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             startRow = 5, startCol = 2, colNames = FALSE)
       }
       if (i[6] == "2" ){
         enum_cp[2] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  startRow = 6, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "3") {
         enum_cp[3] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  startRow = 7, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "4") {
         enum_cp[4] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  startRow = 8, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "5") {
         enum_cp[5] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  startRow = 9, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "6") {
         enum_cp[6] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  startRow = 10, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "7") {
         enum_cp[7] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                                  x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                                  startRow = 11, startCol = 2, colNames = FALSE)
       } 
     }
     if (i[7] == "2") {
       if (i[6] == "1") {
         enum_cp[8] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             startRow = 13, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "2" ){
         enum_cp[9] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             startRow = 14, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "3") {
         enum_cp[10] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             startRow = 15, startCol = 2, colNames = FALSE)
       } 
       if (i[6] == "4") {
         enum_cp[11] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             startRow = 16, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "5") {
         enum_cp[12] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             startRow = 17, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "6") {
         enum_cp[13] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             startRow = 18, startCol = 2, colNames = FALSE)
       } 
       if( i[6] == "7") {
         enum_cp[14] = data.table(i[2], i[3], i[4], i[5], cmt, pg, stringsAsFactors = TRUE)
+        if (excel) writeData(wb, sheet=1, 
+                             x=matrix(c(i[2], i[3], i[4], i[5], i[3], i[4], i[5], cmt, pg), nrow=1), 
+                             startRow = 19, startCol = 2, colNames = FALSE)
       } 
     }
 }
+  
   
   fields = get_fields("timesheet_fillable.pdf")
   
@@ -101,8 +160,8 @@ each_period = function(period_dt,period_text,cmt, pg) {
     }
   }
   
-  fields$name$value = "Jie Niu"
-  fields$id$value = "20072214"
+  fields$name$value = emp_name
+  fields$id$value = emp_id
   fields$dept$value = dept
   fields$period$value = period_text
   
@@ -113,14 +172,34 @@ each_period = function(period_dt,period_text,cmt, pg) {
   t_total = wk_1_total+wk_2_total
   fields$total$value = t_total
   
-  new_file_name = paste0("timesheet_", period_text, ".pdf")
-  set_fields("timesheet_fillable.pdf", new_file_name, fields)
+  if (excel) {
+    writeData(wb, sheet=1, x=emp_name, startRow = 2, startCol = 2, colNames = FALSE)
+    writeData(wb, sheet=1, x=emp_id, startRow = 2, startCol = 5, colNames = FALSE)
+    writeData(wb, sheet=1, x=dept, startRow = 2, startCol = 9, colNames = FALSE)
+    writeData(wb, sheet=1, x=period_text, startRow = 2, startCol = 12, colNames = FALSE)
+    
+    writeData(wb, sheet=1, x=wk_1_total, startRow = 12, startCol = 5, colNames = FALSE)
+    writeData(wb, sheet=1, x=wk_1_total, startRow = 12, startCol = 8, colNames = FALSE)
+    writeData(wb, sheet=1, x=wk_2_total, startRow = 20, startCol = 5, colNames = FALSE)
+    writeData(wb, sheet=1, x=wk_2_total, startRow = 20, startCol = 8, colNames = FALSE)
+    writeData(wb, sheet=1, x=t_total, startRow = 21, startCol = 5, colNames = FALSE)
+    writeData(wb, sheet=1, x=t_total, startRow = 21, startCol = 8, colNames = FALSE)
+  }
   
+  if (excel) {
+    new_file_name = paste0("timesheet_", period_text, ".xlsx")
+    saveWorkbook(wb, new_file_name, overwrite = TRUE)
+    
+  } else {
+    new_file_name = paste0("timesheet_", period_text, ".pdf")
+    set_fields("timesheet_fillable.pdf", new_file_name, fields)
+  }
+    
 }
 
 for (p in unique(timesheet[, period])) {
   print(timesheet[period == p])
   print("-----")
-  each_period(timesheet[period == p], p, comment, program)
+  each_period(timesheet[period == p], p, comment, program, excel=TRUE)
 }
 
